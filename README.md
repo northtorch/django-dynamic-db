@@ -1,14 +1,15 @@
-# Docker勉強会用Djangoサンプル
+# Djangoで複数データベースアクセスを実現するためのサンプル
 
 ## 概要
 
 DB上に数値を格納し、インクリメントしていく機能のみを持つdjangoのプロジェクト
+データベース接続先として複数の接続先を持っており、アクセスホスト名でどのデータベースにアクセスするかを切り分ける
 
 ## リポジトリ
 
 | 名称 | URL | 備考 |
 | :-- | :-- | :-- |
-| ソースコードリポジトリ | https://github.com/northtorch/django-docker | ソースコードを管理するリポジトリ |
+| ソースコードリポジトリ | https://github.com/northtorch/django-dynamic-db | ソースコードを管理するリポジトリ |
 
 
 ## 開発環境
@@ -120,8 +121,16 @@ DB上に数値を格納し、インクリメントしていく機能のみを持
 
 djangoのコマンドとして内部の数値をインクリメントするコマンドを実装済み
 
+### メイン側カウンタをインクリメント
+
 ```
-python manage.py increment
+python manage.py increment_main
+```
+
+### マスタ側カウンタをインクリメント
+
+```
+python manage.py increment_master
 ```
 
 ## インクリメント用のWebページ

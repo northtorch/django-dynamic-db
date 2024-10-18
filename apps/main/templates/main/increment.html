@@ -1,9 +1,31 @@
 {% extends 'base.html' %}
 {% load md5url %}
 {% block content %}
-<h4>現在のカウンタ：{{current_count}}</h4>
+<h4>ホスト：{{request.get_host}}</h4>
+<h4>マスタカウンタ：{{master_count}}</h4>
+<h4>メインカウンタ：{{current_count}}</h4>
 <form action="" method="post">
     {% csrf_token %}
-    <button type="submit">インクリメント</button>
+    <input type="hidden" name="target" value="master">
+    <input type="hidden" name="opetype" value="queryset">
+    <button type="submit">インクリメント(マスタ・QuerySet経由)</button>
+</form>
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="target" value="main">
+    <input type="hidden" name="opetype" value="queryset">
+    <button type="submit">インクリメント(メイン・QuerySet経由)</button>
+</form>
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="target" value="master">
+    <input type="hidden" name="opetype" value="factory">
+    <button type="submit">インクリメント(マスタ・Factory経由)</button>
+</form>
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="target" value="main">
+    <input type="hidden" name="opetype" value="factory">
+    <button type="submit">インクリメント(メイン・Factory経由)</button>
 </form>
 {% endblock %}

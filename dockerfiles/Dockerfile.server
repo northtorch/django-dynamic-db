@@ -16,4 +16,4 @@ COPY ./ /opt/app/
 COPY ./core/local_settings.py.docker /opt/app/core/local_settings.py
 RUN mkdir /var/log/django
 
-CMD bash -c "python manage.py migrate && python manage.py runserver 0:8000"
+CMD bash -c "bash migrate.sh && python manage.py runserver 0:8000"

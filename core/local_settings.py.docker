@@ -33,11 +33,24 @@ ADMINS = (
     ('admin', 'admin@northtorch.co.jp'),
 )
 
+# データベース接続先設定
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(FILE_BASE_DIR, 'db', 'db.sqlite3'),
-    }
+        'NAME': os.path.join(FILE_BASE_DIR, 'db', 'master_db.sqlite3'),
+    },
+    "main": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(FILE_BASE_DIR, "db", "main_db.sqlite3"),
+    },
+}
+
+# 動的にDBルーティングを行うための設定
+DATABASE_ROUTERS = ["custom.routers.CustomRouter"]
+
+# ドメインとアクセス先DBのマッピング
+DYNAMIC_DB_ROUTES = {
+    '127.0.0.1:8000': 'main',
 }
 
 LOGPATH = os.path.join(LOG_BASE_DIR, 'django.log')
